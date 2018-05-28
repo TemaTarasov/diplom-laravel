@@ -1,0 +1,1 @@
+export const trim = (value, full = false) => value ? value.trim().split(' ').filter(x => x !== '').join(full ? '' : ' ') : value;
