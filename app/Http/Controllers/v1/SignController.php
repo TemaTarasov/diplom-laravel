@@ -6,10 +6,16 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class SignController extends Controller {
+  public function __construct() {
+    parent::__construct();
+
+    $this->content = array_merge([
+      'pageName' => 'Sign In'
+    ], $this->version);
+  }
+
   public function in() {
-    return view('sign-in', [
-      'version' => $this->VERSION
-    ]);
+    return view('ui.sign-in', $this->content);
   }
 
   public function up() {
@@ -25,11 +31,11 @@ class SignController extends Controller {
   }
 
   public function login(Request $request) {
-    dd($request);
+    return $request;
   }
 
   public function register(Request $request) {
-    dd($request);
+    return $request;
   }
 
   /**

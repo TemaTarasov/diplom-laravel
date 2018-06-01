@@ -1,4 +1,4 @@
-export default class {
+export class Table {
   constructor() {
     this.selected = [];
     this.checkboxes = {
@@ -30,26 +30,10 @@ export default class {
           action.addEventListener('click', this.handleActionBound.bind(this), true);
         });
 
-        this.checkboxes.items.forEach(item => {
-          item.addEventListener('change', this.handleSelectChanged.bind(this), true);
-        });
-        this.checkboxes.main.addEventListener('click', () => {
-          const value = this.checkboxes.main.checked;
-
-          this.selected = [];
-
-          this.checkboxes.items.forEach(item => {
-            const {id, title} = item.dataset;
-
-            if (value) {
-              this.selected.push({
-                id, title
-              });
-            }
-
-            item.checked = value;
-          });
-        }, true);
+        this.__initCheckboxes(this.checkboxes);
+        this.__initBulkActions(
+          [].slice.call(document.querySelectorAll('[role="bulk-action"]'))
+        )
       }
     } else {
       if (!this.flag) {
@@ -57,6 +41,43 @@ export default class {
         setTimeout(() => this.__init(), 150);
       }
     }
+  }
+
+  /**
+   * @param  {object} checkboxes
+   * @return void 0
+   */
+  __initCheckboxes(checkboxes) {
+    checkboxes.items.forEach(item => {
+      item.addEventListener('change', this.handleSelectChanged.bind(this), true);
+    });
+    checkboxes.main.addEventListener('click', () => {
+      const value = checkboxes.main.checked;
+
+      this.selected = [];
+
+      checkboxes.items.forEach(item => {
+        const { id, title } = item.dataset;
+
+        if (value) {
+          this.selected.push({
+            id, title
+          });
+        }
+
+        item.checked = value;
+      });
+    }, true);
+  }
+
+  /**
+   * @param  {array} actions
+   * @return void 0
+   */
+  __initBulkActions(actions) {
+    actions.forEach(action => {
+      action.addEventListener('click', this.handleBulkActionBound.bind(this), true);
+    });
   }
 
   /**
@@ -76,7 +97,7 @@ export default class {
 
     const target = e.currentTarget;
     const value = target.checked;
-    const {id, title} = target.dataset;
+    const { id, title } = target.dataset;
 
     if (value) {
       this.selected.push({
@@ -92,10 +113,10 @@ export default class {
    * @return void 0
    */
   handleActionBound(e) {
-    const {id, action} = e.currentTarget.dataset;
+    const { id, type } = e.currentTarget.dataset;
 
     switch (true) {
-      case action === 'delete':
+      case type === 'delete':
         this.handleDelete(id);
         break;
       default:
@@ -108,6 +129,32 @@ export default class {
    * @return void 0
    */
   handleDelete(id) {
+
+  }
+
+  /**
+   * @param  {event} e
+   * @return void 0
+   */
+  handleBulkActionBound(e) {
+    const { type } = e.currentTarget.dataset;
+
+    switch (true) {
+      case type === 'delete':
+        this.handleMultipleDelete(
+          this.selected.map(select => select.id)
+        );
+        break;
+      default:
+        break;
+    }
+  }
+
+  /**
+   * @param  {array} ids
+   * @return void 0
+   */
+  handleMultipleDelete(ids) {
 
   }
 }

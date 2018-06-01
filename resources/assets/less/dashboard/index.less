@@ -145,6 +145,19 @@ header {
     box-shadow: 2px 2px 8px rgba(0, 0, 0, .5);
     transition: width @transition;
 
+    &::after {
+      .__header-line;
+
+      top: 0;
+      left: 49px;
+      bottom: 0;
+      width: 1px;
+      height: 100%;
+      background-color: @secondary-color;
+      z-index: 0;
+      transform: none;
+    }
+
     &.opened {
       width: 250px;
     }
@@ -168,6 +181,7 @@ header {
 
           height: 100%;
           background-color: @secondary-color;
+          z-index: 1;
         }
 
         &::after {
@@ -254,20 +268,18 @@ header {
           background-color: @secondary-color;
           transition: background-color @transition;
           transform: none;
+          z-index: 1;
         }
         svg {
           display: flex;
           flex-shrink: 0;
 
-          width: 25px;
-          height: 25px;
+          margin-left: -4px;
+          width: 22px;
+          height: 22px;
           fill: @inactive-color;
           transition: fill @transition;
         }
-      }
-
-      &:last-of-type {
-        border-bottom: 1px solid @secondary-color;
       }
     }
   }

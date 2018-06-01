@@ -13,4 +13,6 @@ let mix = require('laravel-mix');
 
 mix
   .less('./resources/assets/less/dashboard/index.less', './public/css/dashboard.css')
-  .js('./resources/assets/js/dashboard', './public/js/dashboard.js');
+  .less('./resources/assets/less/ui/sign.less', './public/css/sign.css')
+  .js('./resources/assets/js/dashboard', './public/js/dashboard.js')
+  .js('./resources/assets/js/ui/sign', './public/js/sign.js');

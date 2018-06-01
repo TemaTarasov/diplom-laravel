@@ -1,5 +1,5 @@
 import moment from 'moment';
-import {trim} from './helpers/string';
+import { trim } from './helpers';
 
 (doc => {
   [].slice.call(doc.querySelectorAll('[role="date"]')).forEach(item => {

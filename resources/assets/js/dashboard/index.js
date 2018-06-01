@@ -1,24 +1,9 @@
 import '../bootstrap';
 
-import Table from './Table';
+import { Table, Storage } from './components';
 
-window.storage = {
-  get(name, data) {
-    let result = JSON.parse(localStorage.getItem(name));
-
-    if (result === null) {
-      result = data;
-      window.storage.set(name, data);
-    }
-
-    return result;
-  },
-  set(name, data) {
-    localStorage.setItem(name, JSON.stringify(data));
-
-    return localStorage.getItem(name);
-  }
-};
+window.Tarasov = window.Tarasov || {};
+window.Tarasov.Storage = Storage;
 
 /**
  * Navigation
@@ -32,7 +17,7 @@ window.storage = {
   const burger = {
     target: _burger,
     data: _burger.dataset,
-    state: window.storage.get('burger', false),
+    state: window.Tarasov.Storage.get('burger', false),
     navigation: doc.querySelector(_burger.dataset.target)
   };
 
@@ -41,14 +26,14 @@ window.storage = {
 
     setTimeout(() => {
       burger.navigation.classList.remove(burger.data.classname);
-      window.storage.set('burger', false);
+      window.Tarasov.Storage.set('burger', false);
     });
   }
 
   burger.target.addEventListener('click', () => {
     burger.navigation.classList.toggle(burger.data.classname);
 
-    window.storage.set('burger', burger.navigation.classList.contains(burger.data.classname));
+    window.Tarasov.Storage.set('burger', burger.navigation.classList.contains(burger.data.classname));
   });
 
   doc.addEventListener('click', e => {
@@ -72,5 +57,5 @@ window.storage = {
  * @return void 0
  */
 (() => {
-  window.TableManager = new Table();
+  window.Tarasov.TableManager = new Table();
 })();

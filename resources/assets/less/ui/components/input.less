@@ -1,0 +1,82 @@
+.input-block {
+  position: relative;
+  width: 100%;
+
+  &::after {
+    position: absolute;
+    content: '';
+    display: block;
+    top: calc(100% - 2px);
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: @accent-color;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform @transition,
+    background-color @transition;
+    z-index: 5;
+  }
+
+  &.focus {
+    &::after {
+      background-color: @accent-color;
+      transform: scaleX(1);
+    }
+  }
+
+  &[data-error="true"] {
+    &::after {
+      background-color: @error-color;
+    }
+
+    label {
+      color: @error-color;
+    }
+
+    input {
+      border-color: @error-color;
+    }
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+
+    position: static;
+    top: 0;
+    left: 0;
+    margin-bottom: 0;
+    width: auto;
+    height: auto;
+    font-size: 12px;
+    color: @inactive-color;
+    transition: transform @transition,
+    color @transition,
+    opacity @transition;
+
+    transform: translateY(calc(50% + (100% / 2))) scale(1.15);
+    transform-origin: top left;
+    pointer-events: none;
+
+    &.focus {
+      opacity: 1;
+      color: @accent-color;
+      transform: none;
+    }
+
+    .required {
+      margin-left: 3px;
+      color: @error-color;
+    }
+  }
+
+  input {
+    padding: 0;
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid @inactive-color;
+  }
+}

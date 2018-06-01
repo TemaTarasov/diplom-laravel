@@ -1,0 +1,66 @@
+.button {
+  position: relative;
+  padding: 0;
+  min-width: 130px;
+  height: 35px;
+  font-size: 14px;
+  font-weight: 500;
+  color: @white;
+
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: background-color @transition,
+  color @transition,
+  border-color @transition;
+  cursor: pointer;
+  user-select: none;
+
+  &.primary {
+    background-color: @accent-color;
+
+    &:hover {
+      background-color: @hover-accent-color;
+    }
+    &.error {
+      background-color: @error-color;
+
+      &:hover {
+        background-color: @error-color;
+      }
+    }
+  }
+  &.secondary {
+    color: @accent-color;
+    border-color: @accent-color;
+    background-color: transparent;
+
+    &:hover {
+      color: @hover-accent-color;
+      background-color: transparent;
+    }
+
+    &.error {
+      color: @error-color;
+      border-color: @error-color;
+      background-color: transparent;
+
+      &:hover {
+        color: @error-color;
+        background-color: transparent;
+      }
+    }
+  }
+  &.tertiary {
+    padding: 0 20px;
+    min-width: inherit;
+    color: @accent-color;
+    border-color: transparent;
+    background-color: transparent;
+
+    &:hover {
+      color: @hover-accent-color;
+      border-color: transparent;
+      background-color: transparent;
+    }
+  }
+}
