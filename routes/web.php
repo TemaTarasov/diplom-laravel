@@ -52,5 +52,11 @@ Route::group([
   ], function () {
     Route::post('login', 'SignController@login');
     Route::post('register', 'SignController@register');
+
+    Route::group([
+      'middleware' => 'auth'
+    ], function () {
+      Route::get('logout', 'SignController@logout');
+    });
   });
 });

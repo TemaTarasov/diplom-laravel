@@ -7,6 +7,7 @@
 @section('layout')
   <div class="sign-container">
     <div class="sign-container-title">Tarasov Inc.</div>
+    <div class="sign-container-description">Sign-in</div>
 
     <form id="sign-in">
       @include('ui.components.input', [
@@ -33,7 +34,17 @@
   <script src="/js/sign.js?version={{ $version }}"></script>
   <script>
     new window.Tarasov.Form('#sign-in', ['login', 'password'], '/api/v1/login', 'post', function (res) {
-      debugger;
+      if (res.data.status === 422 && res.data.error) {
+        return window.Tarasov.Notification.notify({
+          type: 'warning',
+          autoclose: false,
+          content: res.data.error
+        });
+      }
+
+      if (res.data.status === 200) {
+        location.href = '/dashboard';
+      }
     });
   </script>
 @endsection

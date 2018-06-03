@@ -1,0 +1,71 @@
+#notification {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+
+  position: fixed;
+  padding: 0;
+  margin-bottom: 0;
+  top: 10px;
+  right: 20px;
+  z-index: 9999;
+
+  .notification {
+    ._box_shadow;
+
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+
+    margin: 10px 0;
+    min-width: 220px;
+    max-width: 450px;
+    min-height: 60px;
+
+    background-color: @white;
+    border: 0;
+    border-radius: 3px;
+    overflow: hidden;
+    transition: transform @transition;
+
+    &-wrapper {
+      display: flex;
+    }
+  }
+
+  .notification-icon i {
+    padding: 20px 0 20px 20px;
+    font-size: 26px;
+  }
+
+  .success .notification-icon i {
+    color: @success-color;
+  }
+  .warning .notification-icon i {
+    color: @warning-color;
+  }
+  .error .notification-icon i {
+    color: @error-color;
+  }
+
+  .notification-content {
+    display: flex;
+    align-items: center;
+    padding: 20px 0 20px 20px;
+
+    word-wrap: break-word;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, .1);
+  }
+
+  .action i {
+    padding: 10px;
+    margin: 10px;
+    color: @inactive-color;
+    transition: color @transition;
+    cursor: pointer;
+
+    &:hover {
+      color: @accent-color;
+    }
+  }
+}

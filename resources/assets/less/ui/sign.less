@@ -10,20 +10,31 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  background-color: #f2f3f8;
 }
 
 .sign-container {
-  padding: 20px 40px;
+  ._box_shadow;
+
+  padding: 20px 40px 40px;
   width: 320px;
 
   border-radius: 4px;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, .5);
+  background-color: @white;
 
   &-title {
-    margin-bottom: 5px;
-    font-size: 22px;
+    margin-bottom: 10px;
+    font-size: 32px;
     font-weight: 500;
     font-style: italic;
+    color: @primary-color;
+    text-align: center;
+  }
+  &-description {
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 500;
     color: @primary-color;
     text-align: center;
   }

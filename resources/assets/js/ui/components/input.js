@@ -1,11 +1,11 @@
 import { trim } from '../../helpers';
 
 export class Input {
-  constructor(doc = document) {
+  constructor() {
     this.inputs = {};
 
     this.__init(
-      [].slice.apply(doc.querySelectorAll('[role="input"]')) || []
+      [].slice.apply(document.querySelectorAll('[role="input"]')) || []
     );
   }
 
@@ -20,6 +20,13 @@ export class Input {
 
         input.addEventListener('focus', this.handleFocus.bind(this), true);
         input.addEventListener('blur', this.handleBlur.bind(this), true);
+        input.addEventListener('input', () => {
+          if (trim(input.value) !== '') {
+            input.label.classList.add('not-empty');
+          } else {
+            input.label.classList.remove('not-empty');
+          }
+        }, true);
       });
     }
   }
@@ -161,10 +168,7 @@ export class Input {
     input.value = trim(input.value);
     input.parentElement.classList.remove('focus');
 
-    if (
-      input.value === '' &&
-      JSON.parse(input.dataset.labelFloating)
-    ) {
+    if (JSON.parse(input.dataset.labelFloating)) {
       input.label.classList.remove('focus');
     }
 

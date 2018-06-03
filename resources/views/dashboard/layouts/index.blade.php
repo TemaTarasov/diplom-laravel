@@ -19,8 +19,8 @@
       </div>
     </div>
     <div>
-      <div class="header-user">
-        User Name
+      <div class="header-user" onclick="logout(event)">
+        {{ Auth::user()->login }}
 
         @include('components.icons.index', [
           'icon' => 'arrow'
@@ -61,4 +61,21 @@
 
 @section('scripts')
   <script src="/js/dashboard.js?version={{ $version }}"></script>
+  <script>
+    var logout = function () {
+      axios.get('/api/v1/logout').then(function (res) {
+        if (res.data.status === 200) {
+          location.href = '/sign-in';
+
+          return false;
+        }
+
+        window.Tarasov.Notification.notify({
+          type: 'error',
+          autoclose: false,
+          content: 'Something went wrong try again later!'
+        })
+      });
+    }
+  </script>
 @endsection
