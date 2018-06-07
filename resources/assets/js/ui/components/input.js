@@ -1,4 +1,4 @@
-import { trim } from '../../helpers';
+import { trim, isEmpty } from '../../helpers';
 
 export class Input {
   constructor() {
@@ -21,7 +21,7 @@ export class Input {
         input.addEventListener('focus', this.handleFocus.bind(this), true);
         input.addEventListener('blur', this.handleBlur.bind(this), true);
         input.addEventListener('input', () => {
-          if (trim(input.value) !== '') {
+          if (!isEmpty(trim(input.value))) {
             input.label.classList.add('not-empty');
           } else {
             input.label.classList.remove('not-empty');
@@ -195,16 +195,16 @@ export class Input {
       }
     }
 
-    const bool = trim(this.value) !== '';
+    const bool = isEmpty(trim(this.value));
 
-    if (!bool) {
+    if (bool) {
       this.parentElement.setAttribute('data-error', 'true');
     } else {
       this.parentElement.removeAttribute('data-error');
     }
 
     if (validate) {
-      validate = bool;
+      validate = !bool;
 
       return validate;
     }

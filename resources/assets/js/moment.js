@@ -1,12 +1,12 @@
 import moment from 'moment';
-import { trim } from './helpers';
+import { trim, isEmpty, documentReady } from './helpers';
 
-(doc => {
-  [].slice.call(doc.querySelectorAll('[role="date"]')).forEach(item => {
+documentReady(function () {
+  [].slice.call(this.querySelectorAll('[role="date"]')).forEach(item => {
     const value = item.innerHTML;
 
-    if (trim(value) !== '') {
+    if (!isEmpty(trim(value))) {
       item.innerHTML = moment(value).format('lll');
     }
   });
-})(document);
+});

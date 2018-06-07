@@ -9,7 +9,7 @@ class Dashboard extends Controller {
         'items'   => [
           ['label' => 'Dashboard', 'icon' => 'dashboard', 'href' => '/dashboard', 'name' => 'dashboard'],
           '-',
-          ['label' => 'Users', 'icon' => 'users', 'href' => '/dashboard/users', 'name' => 'users'],
+          ['label' => 'Users', 'icon' => 'users', 'href' => '/dashboard/users', 'name' => 'users', 'only' => ['service-admin', 'admin']],
         ],
         'current' => ''
       ]

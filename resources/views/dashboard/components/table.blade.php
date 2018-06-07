@@ -1,4 +1,4 @@
-@if (isset($table['actions']))
+@if (Auth::user()->permissions === 'admin' && isset($table['actions']))
   @foreach ($table['actions'] as $action)
     <p role="bulk-action" data-type="{{ $action['type'] }}">{{ $action['label'] }}</p>
   @endforeach
@@ -7,9 +7,11 @@
 <table class="table table-striped" role="table">
   <thead class="table-header">
   <tr class="table-header-row">
-    <th class="table-header-cell select">
-      <input type="checkbox" role="table-select-all">
-    </th>
+    @if (Auth::user()->permissions === 'admin')
+      <th class="table-header-cell select">
+        <input type="checkbox" role="table-select-all">
+      </th>
+    @endif
     @foreach ($table['items'] as $item)
       <th class="table-header-cell" style="width: {{ isset($item['width']) ? $item['width'] : 'auto' }}">
         {{ $item['label'] }}
@@ -20,9 +22,13 @@
   <tbody class="table-body">
   @foreach ($data as $result)
     <tr class="table-body-row">
-      <td class="table-body-cell select">
-        <input type="checkbox" role="table-select" data-id="{{ $result['_id'] }}" data-title="{{ $result[$tableTitle] }}">
-      </td>
+      @if (Auth::user()->permissions === 'admin')
+        <td class="table-body-cell select">
+          @if (Auth::user()->_id !== $result['_id'])
+            <input type="checkbox" role="table-select" data-id="{{ $result['_id'] }}" data-title="{{ $result[$tableTitle] }}">
+          @endif
+        </td>
+      @endif
       @foreach ($table['items'] as $item)
         <td class="table-body-cell">
           <div class="table-body-cell-content">
@@ -30,7 +36,7 @@
               {{ $result[$item['name']] }}
             </span>
 
-            @if (isset($item['actions']))
+            @if (Auth::user()->permissions === 'admin' && isset($item['actions']))
               <div class="table-body-actions">
                 @foreach ($item['actions'] as $action)
                   @if ($action['type'] === 'edit')
@@ -38,9 +44,11 @@
                       {{ $action['label'] }}
                     </a>
                   @else
-                    <span class="table-action {{ $action['type'] }}" role="table-action" data-type="{{ $action['type'] }}" data-id="{{ $result['_id'] }}" data-title="{{ $result[$tableTitle] }}">
-                      {{ $action['label'] }}
-                    </span>
+                    @if ($action['type'] === 'delete' && Auth::user()->_id !== $result['_id'])
+                      <span class="table-action {{ $action['type'] }}" role="table-action" data-type="{{ $action['type'] }}" data-id="{{ $result['_id'] }}" data-title="{{ $result[$tableTitle] }}">
+                        {{ $action['label'] }}
+                      </span>
+                    @endif
                   @endif
                 @endforeach
               </div>

@@ -1,6 +1,7 @@
 import '../bootstrap';
 
 import { Table, Storage } from './components';
+import { documentReady } from '../helpers';
 
 window.Tarasov = window.Tarasov || {};
 window.Tarasov.Storage = Storage;
@@ -8,17 +9,16 @@ window.Tarasov.Storage = Storage;
 /**
  * Navigation
  *
- * @param  {*} doc
  * @return void 0
  */
-(doc => {
-  const _burger = doc.getElementById('burger');
+documentReady(function () {
+  const _burger = this.getElementById('burger');
 
   const burger = {
     target: _burger,
     data: _burger.dataset,
     state: window.Tarasov.Storage.get('burger', false),
-    navigation: doc.querySelector(_burger.dataset.target)
+    navigation: this.querySelector(_burger.dataset.target)
   };
 
   if (burger.state) {
@@ -36,7 +36,7 @@ window.Tarasov.Storage = Storage;
     window.Tarasov.Storage.set('burger', burger.navigation.classList.contains(burger.data.classname));
   });
 
-  doc.addEventListener('click', e => {
+  this.addEventListener('click', e => {
     if (
       !e.path.some(el => {
         if (el.classList) {
@@ -49,13 +49,13 @@ window.Tarasov.Storage = Storage;
       burger.navigation.classList.remove(burger.data.classname);
     }
   }, true);
-})(document);
+});
 
 /**
  * Table
- * @param  {*} doc
+ *
  * @return void 0
  */
-(() => {
+documentReady(function () {
   window.Tarasov.TableManager = new Table();
-})();
+});

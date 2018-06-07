@@ -1,2 +1,2 @@
-export { trim } from './string';
-export { template } from './template';
+export { trim, isEmpty } from './string';
+export { template, documentReady } from './template';

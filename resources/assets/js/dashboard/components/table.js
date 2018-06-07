@@ -1,3 +1,5 @@
+import { isEmpty } from '../../helpers';
+
 export class Table {
   constructor() {
     this.selected = [];
@@ -5,10 +7,64 @@ export class Table {
       main: void 0,
       items: void 0
     };
+    this.page = '';
+    this.pageSize = '';
 
     this.flag = false;
 
     this.__init();
+  }
+
+  __mapQueryToObject(search) {
+    return search.split('&').reduce((acc, pair) => {
+      const [key, value] = pair.split('=');
+
+      if (key && value) {
+        return { ...acc, [key]: value };
+      }
+
+      return acc;
+    }, {});
+  }
+
+  __mapQueryObjectToString(object) {
+    return Object.keys(object).reduce((acc, key, index) => index > 0 ? `${acc}&${key}=${object[key]}` : `${key}=${object[key]}`, '');
+  }
+
+  __initQueries() {
+    const search = this.__mapQueryToObject(window.location.search.substring(1));
+    let flag = false;
+
+    if (!search.page) {
+      flag = true;
+      this.page = search.page = '1';
+    } else {
+      this.page = search.page;
+    }
+
+    if (!search.pageSize) {
+      flag = true;
+      this.pageSize = search.pageSize = '10';
+    } else {
+      this.pageSize = search.pageSize;
+    }
+
+    if (flag) {
+      window.location.search += this.__mapQueryObjectToString(search);
+    }
+  }
+
+  change(attr, data) {
+    const search = this.__mapQueryToObject(window.location.search.substring(1));
+
+    if (
+      search[attr] &&
+      (data && !isEmpty(data))
+    ) {
+      search[attr] = data;
+
+      window.location.search = this.__mapQueryObjectToString(search);
+    }
   }
 
   /**
@@ -26,6 +82,8 @@ export class Table {
         this.checkboxes.main &&
         (this.checkboxes.items && this.checkboxes.items.length)
       ) {
+        this.__initQueries();
+
         [].slice.call(this.table.querySelectorAll('[role="table-action"]')).forEach(action => {
           action.addEventListener('click', this.handleActionBound.bind(this), true);
         });

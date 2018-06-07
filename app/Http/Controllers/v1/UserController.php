@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\Table;
+use App\Http\Requests\Requests;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -54,9 +56,9 @@ class UserController extends Dashboard {
    *
    * @return \Illuminate\Http\Response
    */
-  public function index() {
+  public function index(Request $request) {
     return view('dashboard.pages.users.index', array_merge($this->content, $this->table, [
-      'data' => User::all()
+      'data' => Table::get(User::class, $request->query())
     ]));
   }
 

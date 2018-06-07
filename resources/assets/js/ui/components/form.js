@@ -1,5 +1,3 @@
-import { trim } from '../../helpers';
-
 export class Form {
   constructor(form, inputs, url, method, callback) {
     this.form = document.querySelector(form);
@@ -58,8 +56,7 @@ export class Form {
    */
   handleValidate(inputs = this.controls) {
     return Object.keys(inputs).reduce((acc, key) => {
-      const input = inputs[key];
-      const bool = input.validate();
+      const bool = inputs[key].validate();
 
       if (acc) {
         acc = bool;

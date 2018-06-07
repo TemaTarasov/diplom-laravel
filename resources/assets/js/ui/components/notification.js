@@ -13,9 +13,7 @@ export const Notification = new class {
     const {
       type = 'alert',
       content,
-      autoclose = {
-        delay: 3000
-      }
+      autoclose = 3000
     } = data;
 
     let icon;
@@ -40,10 +38,10 @@ export const Notification = new class {
       content
     });
 
-    if (autoclose) {
+    if (autoclose && Number.isInteger(autoclose)) {
       closeTimeout = setTimeout(() => {
         this.content.removeChild(notitfication);
-      }, autoclose.delay);
+      }, autoclose);
     }
 
     notitfication.querySelector('.action i').addEventListener('click', e => {

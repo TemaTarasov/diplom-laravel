@@ -39,15 +39,19 @@
               <span class="text"></span>
             </div>
           @else
-            <a href="{{ $item['href'] }}" class="{{ $item['label'] === $navigation['current'] ? 'current' : '' }}">
+            @if(
+              !isset($item['only']) || (isset($item['only']) && in_array(Auth::user()->permissions, $item['only']))
+            )
+              <a href="{{ $item['href'] }}" class="{{ $item['label'] === $navigation['current'] ? 'current' : '' }}">
               <span>
                 @include('components.icons.index', [
                   'icon' => $item['icon']
                 ])
               </span>
 
-              {{ $item['label'] }}
-            </a>
+                {{ $item['label'] }}
+              </a>
+            @endif
           @endif
         @endforeach
       </div>

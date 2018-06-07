@@ -10,3 +10,7 @@ export const template = (template, data) => {
 
   return result.content.children[0];
 };
+
+export const documentReady = callback => {
+  window.addEventListener('DOMContentLoaded', callback.bind(document), true);
+};

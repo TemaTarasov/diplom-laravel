@@ -14,15 +14,24 @@ class UserSeeder extends Seeder {
   public function run() {
     DB::table('users')->truncate();
 
-    $user = new User;
+    $service_admin = new User;
 
-    $user->login = 'admin';
-    $user->email = 'admin@example.com';
-    $user->password = Hash::make('123');
-    $user->permissions = 'sevice-admin';
+    $service_admin->login = 'service-admin';
+    $service_admin->email = 'service-admin@example.com';
+    $service_admin->password = Hash::make('service-admin');
+    $service_admin->permissions = 'service-admin';
 
-    $user->save();
+    $service_admin->save();
 
-    factory(App\User::class, 4)->create();
+    $admin = new User;
+
+    $admin->login = 'admin';
+    $admin->email = 'admin@example.com';
+    $admin->password = Hash::make('admin');
+    $admin->permissions = 'admin';
+
+    $admin->save();
+
+    factory(App\User::class, 3)->create();
   }
 }

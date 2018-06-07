@@ -32,19 +32,4 @@
 
 @section('scripts')
   <script src="/js/sign.js?version={{ $version }}"></script>
-  <script>
-    new window.Tarasov.Form('#sign-in', ['login', 'password'], '/api/v1/login', 'post', function (res) {
-      if (res.data.status === 422 && res.data.error) {
-        return window.Tarasov.Notification.notify({
-          type: 'warning',
-          autoclose: false,
-          content: res.data.error
-        });
-      }
-
-      if (res.data.status === 200) {
-        location.href = '/dashboard';
-      }
-    });
-  </script>
 @endsection

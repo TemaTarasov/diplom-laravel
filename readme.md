@@ -22,9 +22,15 @@
 
 Local Credentials:
 ```
-Login: admin
-email: admin@example.com
-Password: 123
+Admin
+  Login: admin
+  email: admin@example.com
+  Password: admin
+  
+Service-admin
+  Login: service-admin
+  email: service-admin@example.com
+  Password: service-admin
 ```
 
 ## Direcotry
