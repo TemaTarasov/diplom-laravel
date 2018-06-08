@@ -4,6 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateUsersTable extends Migration {
+//$collection->index(
+//  [
+//    "title" => "text"
+//  ],
+//  'textSearch',
+//  null,
+//  [
+//    'name' => 'textSearch'
+//  ]
+//);
+
   /**
    * Run the migrations.
    *
