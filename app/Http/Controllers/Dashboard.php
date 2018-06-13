@@ -7,9 +7,9 @@ class Dashboard extends Controller {
     $this->navigation = [
       'navigation' => [
         'items'   => [
-          ['label' => 'Dashboard', 'icon' => 'dashboard', 'href' => '/dashboard', 'name' => 'dashboard'],
+          ['label' => 'Dashboard', 'icon' => 'fa-chart-line', 'href' => '/dashboard', 'name' => 'dashboard'],
           '-',
-          ['label' => 'Users', 'icon' => 'users', 'href' => '/dashboard/users', 'name' => 'users', 'only' => ['service-admin', 'admin']],
+          ['label' => 'Users', 'icon' => 'fa-users', 'href' => '/dashboard/users', 'name' => 'users', 'only' => ['service-admin', 'admin']],
         ],
         'current' => ''
       ]

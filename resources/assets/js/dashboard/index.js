@@ -1,6 +1,6 @@
 import '../bootstrap';
 
-import { Table, Storage } from './components';
+import { Table, Storage } from '../components';
 import { documentReady } from '../helpers';
 
 window.Tarasov = window.Tarasov || {};

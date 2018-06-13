@@ -1,4 +1,4 @@
-import { isEmpty } from '../../helpers';
+import { isEmpty } from '../helpers';
 
 export class Table {
   constructor() {

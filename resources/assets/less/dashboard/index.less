@@ -60,17 +60,17 @@ header {
     &:hover {
       background-color: @secondary-color;
 
-      svg {
-        fill: @white;
+      .fas {
+        color: @white;
       }
     }
 
-    svg {
-      margin-left: -3px;
-      width: 25px;
-      height: 25px;
-      fill: @inactive-color;
-      transition: fill @transition;
+    .fas {
+      //margin-left: -3px;
+      //width: 25px;
+      //height: 25px;
+      color: @inactive-color;
+      transition: color @transition;
     }
   }
 
@@ -100,32 +100,101 @@ header {
   }
 
   &-user {
-    display: flex;
-    align-items: center;
-
-    padding-left: 20px;
-    padding-right: 20px;
+    position: relative;
     height: 100%;
-    font-weight: 500;
-    background-color: transparent;
-    transition: background-color @transition;
-    cursor: pointer;
 
-    &:hover {
-      background-color: @secondary-color;
+    &-target {
+      display: flex;
+      align-items: center;
 
-      svg {
-        fill: @white
+      padding-left: 20px;
+      padding-right: 20px;
+      height: 100%;
+      font-weight: 500;
+      background-color: transparent;
+      transition: background-color @transition;
+      cursor: pointer;
+
+      &:hover {
+        background-color: @secondary-color;
+
+        .fas {
+          color: @white
+        }
+      }
+
+      .fas {
+        color: @inactive-color;
+        transition: color @transition;
+      }
+
+      .fa-user {
+        margin-right: 10px;
+        font-size: 20px;
+      }
+      .fa-angle-down {
+        margin-left: 10px;
       }
     }
 
-    svg {
-      margin-left: 10px;
-      width: 12px;
-      height: 12px;
-      transform: rotate(90deg);
-      fill: @inactive-color;
-      transition: fill @transition;
+    &.opened {
+      .header-user-content {
+        display: block;
+      }
+    }
+
+    &-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 5px;
+      min-width: 130px;
+      border-top: 1px solid @secondary-color;
+      background-color: @hover-color;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, .5);
+
+      &-item,
+      &-info {
+        display: flex;
+        align-items: center;
+
+        padding: 0 20px;
+        min-width: 100%;
+        min-height: 40px;
+        color: @inactive-color;
+        white-space: nowrap;
+        cursor: pointer;
+      }
+
+      &-item {
+        border-top: 1px solid @divider-color;
+        background-color: transparent;
+        transition: color @transition,
+        background-color @transition;
+        user-select: none;
+
+        &:hover {
+          color: @white;
+          background-color: @active-color;
+        }
+      }
+
+      &-info {
+        align-items: flex-start;
+        flex-direction: column;
+
+        padding: 5px 20px;
+        background-color: @primary-color;
+        cursor: default;
+
+        &-title {
+          user-select: none;
+        }
+        &-value {
+          color: @white;
+          cursor: text;
+        }
+      }
     }
   }
 }
@@ -233,8 +302,8 @@ header {
       &.current {
         color: @white;
 
-        svg {
-          fill: @white;
+        .fas {
+          color: @white;
         }
       }
 
@@ -269,15 +338,15 @@ header {
           transform: none;
           z-index: 1;
         }
-        svg {
-          display: flex;
-          flex-shrink: 0;
+        .fas {
+          //display: flex;
+          //flex-shrink: 0;
 
-          margin-left: -2px;
-          width: 22px;
-          height: 22px;
-          fill: @inactive-color;
-          transition: fill @transition;
+          //margin-left: -2px;
+          //width: 22px;
+          //height: 22px;
+          color: @inactive-color;
+          transition: color @transition;
         }
       }
     }

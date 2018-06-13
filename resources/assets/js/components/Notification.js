@@ -1,4 +1,4 @@
-import { template } from '../../helpers';
+import { template } from '../helpers';
 
 export const Notification = new class {
   constructor() {

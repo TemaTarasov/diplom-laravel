@@ -8,9 +8,7 @@
   <header>
     <div class="flex">
       <div id="burger" class="header-burger" data-target="#navigation" data-className="opened">
-        @include('components.icons.index', [
-          'icon' => 'burger'
-        ])
+        <i class="fas fa-bars"></i>
       </div>
       <div class="header-logo">
         <div class="header-logo-content">
@@ -19,12 +17,29 @@
       </div>
     </div>
     <div>
-      <div class="header-user" onclick="logout(event)">
-        {{ Auth::user()->login }}
+      <div class="header-user">
+        <div class="header-user-target" data-type="dropdown">
+          <i class="far fa-user"></i>
 
-        @include('components.icons.index', [
-          'icon' => 'arrow'
-        ])
+          {{ Auth::user()->login }}
+
+          <i class="fas fa-angle-down"></i>
+        </div>
+        <div class="header-user-content">
+          <div class="header-user-content-info">
+            <span class="header-user-content-info-title">Account ID</span>
+            <span class="header-user-content-info-value">{{ Auth::user()->_id }}</span>
+          </div>
+          <div class="header-user-content-info">
+            <span class="header-user-content-info-title">Email</span>
+            <span class="header-user-content-info-value">{{ Auth::user()->email }}</span>
+          </div>
+          <div class="header-user-content-info">
+            <span class="header-user-content-info-title">Role</span>
+            <span class="header-user-content-info-value">{{ Auth::user()->permissions }}</span>
+          </div>
+          <div class="header-user-content-item" onclick="logout(event)" data-type="dropdown-item">Logout</div>
+        </div>
       </div>
     </div>
   </header>
@@ -44,11 +59,8 @@
             )
               <a href="{{ $item['href'] }}" class="{{ $item['label'] === $navigation['current'] ? 'current' : '' }}">
               <span>
-                @include('components.icons.index', [
-                  'icon' => $item['icon']
-                ])
+                <i class="fas {{ $item['icon'] }}"></i>
               </span>
-
                 {{ $item['label'] }}
               </a>
             @endif
@@ -74,7 +86,7 @@
           return false;
         }
 
-        window.Tarasov.Notification.notify({
+        return window.Tarasov.Notification.notify({
           type: 'error',
           autoclose: false,
           content: 'Something went wrong try again later!'

@@ -1,7 +1,7 @@
 // require('bootstrap');
 
 import './moment';
-import { Form, Input, Notification } from './ui/components';
+import { Form, Input, Notification, Dropdown } from './components';
 import { documentReady } from './helpers';
 
 /**
@@ -23,4 +23,5 @@ documentReady(function () {
   window.Tarasov.Notification = Notification;
   window.Tarasov.InputsManager = new Input();
   window.Tarasov.Form = Form;
+  window.Tarasov.Dropdown = new Dropdown();
 });

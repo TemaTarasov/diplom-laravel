@@ -1,4 +1,4 @@
-import { trim, isEmpty } from '../../helpers';
+import { trim, isEmpty } from '../helpers';
 
 export class Input {
   constructor() {
