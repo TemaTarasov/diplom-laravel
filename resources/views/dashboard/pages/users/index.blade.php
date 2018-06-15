@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.index')
 
 @section('content')
-  @include('dashboard.components.table')
+  @include('components.table')
 @endsection

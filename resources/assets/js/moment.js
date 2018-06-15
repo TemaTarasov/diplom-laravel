@@ -10,3 +10,13 @@ documentReady(function () {
     }
   });
 });
+
+window.Tarasov = window.Tarasov || {};
+
+/**
+ * @param  {string} value
+ * @return {string}
+ */
+window.Tarasov.moment = value => {
+  return moment(value).format('lll');
+};

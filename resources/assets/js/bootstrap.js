@@ -17,6 +17,9 @@ import { documentReady } from './helpers';
   window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.head.querySelector('meta[name="csrf-token"]').content;
 })();
 
+/**
+ * Define components
+ */
 documentReady(function () {
   window.Tarasov = window.Tarasov || {};
 

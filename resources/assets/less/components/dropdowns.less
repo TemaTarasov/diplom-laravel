@@ -1,0 +1,22 @@
+.dropdown {
+  position: relative;
+
+  &.opened &-content {
+    display: block;
+  }
+
+  &-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    min-width: 130px;
+    box-shadow: @box-shadow;
+    z-index: 1000;
+  }
+}
+
+.dropdown {
+  [data-type="dropdown-item"] {
+    user-select: none;
+  }
+}

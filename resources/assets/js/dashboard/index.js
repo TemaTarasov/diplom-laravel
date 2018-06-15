@@ -3,9 +3,6 @@ import '../bootstrap';
 import { Table, Storage } from '../components';
 import { documentReady } from '../helpers';
 
-window.Tarasov = window.Tarasov || {};
-window.Tarasov.Storage = Storage;
-
 /**
  * Navigation
  *
@@ -38,7 +35,7 @@ documentReady(function () {
 
   this.addEventListener('click', e => {
     if (
-      !e.path.some(el => {
+      !e.composedPath().some(el => {
         if (el.classList) {
           return el.classList.contains('header-burger') || el.classList.contains('navigation-content')
         }

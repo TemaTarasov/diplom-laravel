@@ -1,0 +1,124 @@
+.table {
+  margin-bottom: 0;
+  border: 1px solid #dee2e6;
+  border-top: none;
+
+  th,
+  td {
+    padding: 15px 15px;
+    vertical-align: inherit;
+    font-weight: 400;
+    color: @primary-color;
+  }
+
+  th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: 500;
+  }
+
+  &-header,
+  &-body {
+    &-cell {
+      &.select {
+        width: 40px;
+        text-align: center;
+      }
+    }
+  }
+
+  &-body {
+    &-cell {
+      &-content {
+        display: flex;
+        justify-content: space-between;
+
+        &-item {
+          color: @primary-color;
+          transition: color @transition;
+
+          &:hover {
+            color: @hover-accent-color;
+          }
+        }
+      }
+    }
+  }
+
+  &-action {
+    margin: 0 10px;
+    color: @accent-color;
+    transition: color @transition;
+    text-decoration: underline !important;
+    cursor: pointer;
+
+    &:hover {
+      color: @hover-accent-color;
+      text-decoration: none !important;
+    }
+
+    &.delete {
+      color: @error-color;
+
+      &:hover {
+        color: @error-color;
+      }
+    }
+  }
+}
+
+.table-control {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.table-bulk {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  padding-left: 10px;
+  padding-right: 30px;
+  min-width: 130px;
+  height: 28px;
+  border: 1px solid @inactive-color;
+  color: @inactive-color;
+  border-radius: 3px;
+  background-color: @white;
+  user-select: none;
+  cursor: pointer;
+
+  .fas {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transition: transform @transition;
+    transform: translateY(-50%) rotate(0);
+  }
+
+  & + .dropdown-content {
+    min-width: 100%;
+    top: calc(100% - 2px);
+    border-top: 1px solid @inactive-color;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    overflow: auto;
+  }
+
+  &-item {
+    display: flex;
+    align-items: center;
+
+    padding: 0 10px;
+    min-width: 100%;
+    height: 35px;
+    background-color: @white;
+    color: @primary-color;
+    cursor: pointer;
+  }
+}
+
+.opened .table-bulk .fas {
+  transform: translateY(-50%) rotate(180deg);
+}

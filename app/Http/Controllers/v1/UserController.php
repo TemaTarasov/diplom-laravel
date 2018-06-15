@@ -21,12 +21,12 @@ class UserController extends Dashboard {
       'route'      => '/dashboard/users',
       'tableTitle' => 'login',
       'table'      => [
-        'actions' => [
-          [
-            'type'  => 'delete',
-            'label' => 'Delete'
-          ]
-        ],
+//        'actions' => [
+//          [
+//            'type'  => 'delete',
+//            'label' => 'Delete'
+//          ]
+//        ],
         'items'   => [
           [
             'label' => 'Login',

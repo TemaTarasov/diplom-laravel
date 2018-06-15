@@ -1,6 +1,7 @@
 @import '../common';
 
-@import 'table';
+@import '../components/table';
+@import '../components/dropdowns';
 
 html,
 body {
@@ -66,9 +67,6 @@ header {
     }
 
     .fas {
-      //margin-left: -3px;
-      //width: 25px;
-      //height: 25px;
       color: @inactive-color;
       transition: color @transition;
     }
@@ -103,6 +101,10 @@ header {
     position: relative;
     height: 100%;
 
+    &.opened .fa-angle-down {
+      transform: rotate(180deg);
+    }
+
     &-target {
       display: flex;
       align-items: center;
@@ -134,24 +136,14 @@ header {
       }
       .fa-angle-down {
         margin-left: 10px;
-      }
-    }
-
-    &.opened {
-      .header-user-content {
-        display: block;
+        transition: transform @transition;
       }
     }
 
     &-content {
-      display: none;
-      position: absolute;
-      top: 100%;
       right: 5px;
-      min-width: 130px;
-      border-top: 1px solid @secondary-color;
+      border-top: 2px solid @accent-color;
       background-color: @hover-color;
-      box-shadow: 2px 2px 8px rgba(0, 0, 0, .5);
 
       &-item,
       &-info {
@@ -211,7 +203,7 @@ header {
     border-top: 1px solid @secondary-color;
     overflow-x: hidden;
     overflow-y: auto;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, .5);
+    box-shadow: @box-shadow;
     transition: width @transition;
 
     &::after {
@@ -339,12 +331,6 @@ header {
           z-index: 1;
         }
         .fas {
-          //display: flex;
-          //flex-shrink: 0;
-
-          //margin-left: -2px;
-          //width: 22px;
-          //height: 22px;
           color: @inactive-color;
           transition: color @transition;
         }

@@ -18,3 +18,8 @@ export const isEmpty = value => {
     typeof value === 'undefined' || value === null
   ) || value === '';
 };
+
+window.Tarasov = window.Tarasov || {};
+
+window.Tarasov.trim = trim;
+window.Tarasov.isEmpty = isEmpty;

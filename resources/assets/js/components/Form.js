@@ -1,4 +1,12 @@
 export class Form {
+  /**
+   * @param  {string} form
+   * @param  {array} inputs
+   * @param  {string} url
+   * @param  {string} method
+   * @param  {function} callback
+   * @return void 0
+   */
   constructor(form, inputs, url, method, callback) {
     this.form = document.querySelector(form);
     this.controls = window.Tarasov.InputsManager.get(inputs);

@@ -10,14 +10,14 @@
     <div class="sign-container-description">Sign-in</div>
 
     <form id="sign-in">
-      @include('ui.components.input', [
+      @include('components.input', [
         'name' => 'login',
         'placeholder' => 'Login or Email',
         'require' => true,
         'labelFloating' => true
       ])
 
-      @include('ui.components.input', [
+      @include('components.input', [
         'name' => 'password',
         'placeholder' => 'Password',
         'type' => 'password',

@@ -9,26 +9,58 @@ export class Input {
     );
   }
 
+  /**
+   * @param  {array} blocks
+   * @return void 0
+   */
   __init(blocks) {
     if (blocks.length) {
       blocks.forEach(block => {
-        const input = block.querySelector('input');
-
-        input.label = block.querySelector('label');
-        input.validate = this.validate.bind(input);
-        this.set(input.name, input);
-
-        input.addEventListener('focus', this.handleFocus.bind(this), true);
-        input.addEventListener('blur', this.handleBlur.bind(this), true);
-        input.addEventListener('input', () => {
-          if (!isEmpty(trim(input.value))) {
-            input.label.classList.add('not-empty');
-          } else {
-            input.label.classList.remove('not-empty');
-          }
-        }, true);
+        this.defineInput(block);
       });
     }
+  }
+
+  /**
+   * @param  {HTML.Element} input
+   * @return void 0
+   */
+  defineInput(block) {
+    if (block instanceof HTMLElement) {
+      const input = block.querySelector('input');
+
+      input.label = block.querySelector('label');
+      input.validate = this.validate.bind(input);
+      this.set(input.name, input);
+
+      input.addEventListener('focus', this.handleFocus.bind(this), true);
+      input.addEventListener('blur', this.handleBlur.bind(this), true);
+      input.addEventListener('input', () => {
+        if (!isEmpty(trim(input.value))) {
+          input.label.classList.add('not-empty');
+        } else {
+          input.label.classList.remove('not-empty');
+        }
+      }, true);
+    }
+  }
+
+  /**
+   * @param  {HTML.Element} element
+   * @return {HTML.Element}
+   */
+  define(element) {
+    let block;
+
+    if (element.getAttribute('role') === 'input') {
+      block = element;
+    } else if (element.parentElement.getAttribute('role') === 'input') {
+      block = element.parentElement;
+    }
+
+    this.defineInput(block);
+
+    return this.get(block.querySelector('input').name);
   }
 
   /**
@@ -146,6 +178,18 @@ export class Input {
   }
 
   /**
+   * @param  {string} name
+   * @return void 0
+   */
+  remove(name) {
+    const el = this.get(name).parentElement;
+
+    if (el) {
+      el.parentElement.removeChild(el);
+    }
+  }
+
+  /**
    * @param  {event} e
    * @return void 0
    */
@@ -175,6 +219,9 @@ export class Input {
     input.validate();
   }
 
+  /**
+   * @return {boolean}
+   */
   validate() {
     let validate = true;
     const contrains = JSON.parse(this.dataset.contains);

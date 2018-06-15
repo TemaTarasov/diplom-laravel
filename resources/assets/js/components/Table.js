@@ -1,4 +1,4 @@
-import { isEmpty } from '../helpers';
+import { isEmpty, queryString } from '../helpers';
 
 export class Table {
   constructor() {
@@ -15,24 +15,8 @@ export class Table {
     this.__init();
   }
 
-  __mapQueryToObject(search) {
-    return search.split('&').reduce((acc, pair) => {
-      const [key, value] = pair.split('=');
-
-      if (key && value) {
-        return { ...acc, [key]: value };
-      }
-
-      return acc;
-    }, {});
-  }
-
-  __mapQueryObjectToString(object) {
-    return Object.keys(object).reduce((acc, key, index) => index > 0 ? `${acc}&${key}=${object[key]}` : `${key}=${object[key]}`, '');
-  }
-
   __initQueries() {
-    const search = this.__mapQueryToObject(window.location.search.substring(1));
+    const search = queryString.get();
     let flag = false;
 
     if (!search.page) {
@@ -50,21 +34,12 @@ export class Table {
     }
 
     if (flag) {
-      window.location.search += this.__mapQueryObjectToString(search);
+      queryString.set(search);
     }
   }
 
   change(attr, data) {
-    const search = this.__mapQueryToObject(window.location.search.substring(1));
-
-    if (
-      search[attr] &&
-      (data && !isEmpty(data))
-    ) {
-      search[attr] = data;
-
-      window.location.search = this.__mapQueryObjectToString(search);
-    }
+    queryString.change(attr, data);
   }
 
   /**

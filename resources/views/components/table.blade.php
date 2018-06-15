@@ -1,8 +1,27 @@
-@if (Auth::user()->permissions === 'admin' && isset($table['actions']))
-  @foreach ($table['actions'] as $action)
-    <p role="bulk-action" data-type="{{ $action['type'] }}">{{ $action['label'] }}</p>
-  @endforeach
-@endif
+<div class="table-control">
+  <div>
+    @if (Auth::user()->permissions === 'admin' && isset($table['actions']))
+      <div class="dropdown">
+        <div class="table-bulk" data-type="dropdown" data-value="">
+          <span>Bulk Action</span>
+
+          <i class="fas fa-angle-down"></i>
+        </div>
+
+        <div class="dropdown-content">
+          @foreach ($table['actions'] as $action)
+            <div class="table-bulk-item" data-type="dropdown-item" data-value="{{ $action['type'] }}">
+              {{ $action['label'] }}
+            </div>
+          @endforeach
+        </div>
+      </div>
+    @endif
+  </div>
+  <div>
+
+  </div>
+</div>
 
 <table class="table table-striped" role="table">
   <thead class="table-header">
@@ -32,9 +51,15 @@
       @foreach ($table['items'] as $item)
         <td class="table-body-cell">
           <div class="table-body-cell-content">
-            <span role="{{ isset($item['role']) ? $item['role'] : '' }}">
-              {{ $result[$item['name']] }}
-            </span>
+            @if ($item['name'] === $tableTitle)
+              <a href="{{ $route }}/{{ $result['_id'] }}/edit" class="table-body-cell-content-item">
+                {{ $result[$item['name']] }}
+              </a>
+            @else
+              <span role="{{ isset($item['role']) ? $item['role'] : '' }}">
+                {{ $result[$item['name']] }}
+              </span>
+            @endif
 
             @if (Auth::user()->permissions === 'admin' && isset($item['actions']))
               <div class="table-body-actions">

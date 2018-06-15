@@ -17,7 +17,7 @@
       </div>
     </div>
     <div>
-      <div class="header-user">
+      <div class="header-user dropdown">
         <div class="header-user-target" data-type="dropdown">
           <i class="far fa-user"></i>
 
@@ -25,7 +25,7 @@
 
           <i class="fas fa-angle-down"></i>
         </div>
-        <div class="header-user-content">
+        <div class="header-user-content dropdown-content">
           <div class="header-user-content-info">
             <span class="header-user-content-info-title">Account ID</span>
             <span class="header-user-content-info-value">{{ Auth::user()->_id }}</span>
