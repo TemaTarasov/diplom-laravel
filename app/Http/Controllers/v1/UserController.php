@@ -6,6 +6,7 @@ use App\Http\Requests\Requests;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use phpDocumentor\Reflection\DocBlock\Tag;
 
 class UserController extends Dashboard {
   public function __construct() {
@@ -27,7 +28,7 @@ class UserController extends Dashboard {
 //            'label' => 'Delete'
 //          ]
 //        ],
-        'items'   => [
+        'items' => [
           [
             'label' => 'Login',
             'name'  => 'login'
@@ -57,8 +58,16 @@ class UserController extends Dashboard {
    * @return \Illuminate\Http\Response
    */
   public function index(Request $request) {
+    $pageSize = isset($request->query()['pageSize']) ? intval($request->query()['pageSize']) : 10;
+
+    if ($this->user['permissions'] !== 'service-admin') {
+      $users = User::where('permissions', '!=', 'service-admin')->paginate($pageSize);
+    } else {
+      $users = User::paginate($pageSize);
+    }
+
     return view('dashboard.pages.users.index', array_merge($this->content, $this->table, [
-      'data' => Table::get(User::class, $request->query())
+      'data' => $users
     ]));
   }
 
@@ -100,11 +109,11 @@ class UserController extends Dashboard {
    * @return \Illuminate\Http\Response
    */
   public function edit($user) {
-    $result = User::where('_id', $user)->orWhere('login', $user)->get();
+    $result = User::where('_id', $user)->orWhere('login', $user)->first();
 
-    if (count($result) > 0) {
+    if (isset($result)) {
       return view('dashboard.pages.users.manage', array_merge($this->content, [
-        'user' => $result[0]
+        'user' => $result
       ]));
     }
 

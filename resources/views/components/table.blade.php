@@ -26,10 +26,12 @@
 <table class="table table-striped" role="table">
   <thead class="table-header">
   <tr class="table-header-row">
-    @if (Auth::user()->permissions === 'admin')
-      <th class="table-header-cell select">
-        <input type="checkbox" role="table-select-all">
-      </th>
+    @if (isset($table['actions']))
+      @if (Auth::user()->permissions === 'admin')
+        <th class="table-header-cell select">
+          <input type="checkbox" role="table-select-all">
+        </th>
+      @endif
     @endif
     @foreach ($table['items'] as $item)
       <th class="table-header-cell" style="width: {{ isset($item['width']) ? $item['width'] : 'auto' }}">
@@ -41,12 +43,14 @@
   <tbody class="table-body">
   @foreach ($data as $result)
     <tr class="table-body-row">
-      @if (Auth::user()->permissions === 'admin')
-        <td class="table-body-cell select">
-          @if (Auth::user()->_id !== $result['_id'])
-            <input type="checkbox" role="table-select" data-id="{{ $result['_id'] }}" data-title="{{ $result[$tableTitle] }}">
-          @endif
-        </td>
+      @if (isset($table['actions']))
+        @if (Auth::user()->permissions === 'admin')
+          <td class="table-body-cell select">
+            @if (Auth::user()->_id !== $result['_id'])
+              <input type="checkbox" role="table-select" data-id="{{ $result['_id'] }}" data-title="{{ $result[$tableTitle] }}">
+            @endif
+          </td>
+        @endif
       @endif
       @foreach ($table['items'] as $item)
         <td class="table-body-cell">
