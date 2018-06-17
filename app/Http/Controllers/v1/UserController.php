@@ -12,8 +12,6 @@ class UserController extends Dashboard {
   public function __construct() {
     parent::__construct();
 
-    $this->user = Auth::user();
-
     $this->content['pageName'] = 'Users';
     $this->content['navigation']['current'] = 'Users';
     $this->content['route'] = '/dashboard/users';
@@ -60,7 +58,7 @@ class UserController extends Dashboard {
   public function index(Request $request) {
     $pageSize = isset($request->query()['pageSize']) ? intval($request->query()['pageSize']) : 10;
 
-    if ($this->user['permissions'] !== 'service-admin') {
+    if (Auth::user()->permissions !== 'service-admin') {
       $users = User::where('permissions', '!=', 'service-admin')->paginate($pageSize);
     } else {
       $users = User::paginate($pageSize);
