@@ -51,9 +51,11 @@
         }
       }, function () {
         var password = this.controls['password'],
-          passwordValue = window.Tarasov.trim(this.controls['password'].value),
+          passwordValue = window.Tarasov.trim(password.value),
+
           confirm = this.controls['confirm-password'],
           confrmValue = window.Tarasov.trim(confirm.value),
+
           bool = passwordValue === confrmValue;
 
         if (!bool) {
