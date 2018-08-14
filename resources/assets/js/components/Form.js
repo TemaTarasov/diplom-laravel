@@ -5,9 +5,10 @@ export class Form {
    * @param  {string} url
    * @param  {string} method
    * @param  {function} callback
+   * @param  {function} validation
    * @return void 0
    */
-  constructor(form, inputs, url, method, callback) {
+  constructor(form, inputs, url, method, callback, validation) {
     this.form = document.querySelector(form);
     this.controls = window.Tarasov.InputsManager.get(inputs);
 
@@ -22,6 +23,9 @@ export class Form {
       this.url = url;
       this.method = method;
       this.callback = callback.bind(this);
+      this.validation = validation
+        ? validation.bind(this)
+        : null;
 
       this.__init();
     }
@@ -37,6 +41,10 @@ export class Form {
    */
   handleSubmit(e) {
     e.preventDefault();
+
+    if (this.validation && !this.validation()) {
+      return;
+    }
 
     if (this.handleValidate(this.controls)) {
       const { url, method, controls } = this;

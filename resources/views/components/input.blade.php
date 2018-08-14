@@ -8,6 +8,7 @@
   <input id="{{ $name }}"
          type="{{ isset($type) ? $type : 'text' }}"
          name="{{ $name }}"
+         value="{{ isset($value) ? $value : '' }}"
          data-require="{{ isset($require) && $require ? 'true' : 'false' }}"
          data-contains="{{ isset($contains) ? $contains : 'false' }}"
          data-label-floating="{{ isset($labelFloating) ? 'true' : 'false' }}"

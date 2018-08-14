@@ -33,6 +33,12 @@ export class Input {
       input.validate = this.validate.bind(input);
       this.set(input.name, input);
 
+      if (!isEmpty(trim(input.value))) {
+        input.label.classList.add('not-empty');
+      } else {
+        input.label.classList.remove('not-empty');
+      }
+
       input.addEventListener('focus', this.handleFocus.bind(this), true);
       input.addEventListener('blur', this.handleBlur.bind(this), true);
       input.addEventListener('input', () => {

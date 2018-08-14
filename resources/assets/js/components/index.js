@@ -5,3 +5,4 @@ export { Form } from './Form';
 export { Input } from './Input';
 export { Notification } from './Notification';
 export { Dropdown } from './Dropdown';
+export { Breadcrumbs } from './Breadcrumbs';

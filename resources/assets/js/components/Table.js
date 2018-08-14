@@ -1,15 +1,15 @@
-import { isEmpty, queryString } from '../helpers';
+import { queryString } from '../helpers';
 
 export class Table {
   constructor() {
     this.selected = [];
     this.checkboxes = {
-      main: void 0,
-      items: void 0
+      main: null,
+      items: null
     };
-    this.page = '';
-    this.pageSize = '';
 
+    this.page = null;
+    this.pageSize = null;
     this.flag = false;
 
     this.__init();
@@ -38,6 +38,11 @@ export class Table {
     }
   }
 
+  /**
+   * @param  {object} attr
+   * @param  {} data
+   * @return void 0
+   */
   change(attr, data) {
     queryString.change(attr, data);
   }

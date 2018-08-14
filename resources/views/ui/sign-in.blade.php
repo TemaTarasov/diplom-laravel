@@ -12,7 +12,7 @@
     <form id="sign-in">
       @include('components.input', [
         'name' => 'login',
-        'placeholder' => 'Login or Email',
+        'placeholder' => 'Login or E-mail',
         'require' => true,
         'labelFloating' => true
       ])

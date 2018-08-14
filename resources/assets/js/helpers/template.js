@@ -1,5 +1,3 @@
-import { isEmpty, trim } from "./string";
-
 /**
  * @param  {string} template
  * @param  {object} data

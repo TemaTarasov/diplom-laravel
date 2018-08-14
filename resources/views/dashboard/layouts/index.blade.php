@@ -15,6 +15,7 @@
           Tarasov Inc.
         </div>
       </div>
+      <div id="breadcrumbs" class="breadcrumbs"></div>
     </div>
     <div>
       <div class="header-user dropdown">
@@ -31,12 +32,12 @@
             <span class="header-user-content-info-value">{{ Auth::user()->_id }}</span>
           </div>
           <div class="header-user-content-info">
-            <span class="header-user-content-info-title">Email</span>
+            <span class="header-user-content-info-title">Account E-mail</span>
             <span class="header-user-content-info-value">{{ Auth::user()->email }}</span>
           </div>
           <div class="header-user-content-info">
             <span class="header-user-content-info-title">Role</span>
-            <span class="header-user-content-info-value">{{ Auth::user()->permissions }}</span>
+            <span class="header-user-content-info-value" style="text-transform: capitalize;">{{ Auth::user()->permissions }}</span>
           </div>
           <div class="header-user-content-item" onclick="logout(event)" data-type="dropdown-item">Logout</div>
         </div>
@@ -94,4 +95,6 @@
       });
     }
   </script>
-@endsection
+
+  @yield('scripts')
+@overwrite

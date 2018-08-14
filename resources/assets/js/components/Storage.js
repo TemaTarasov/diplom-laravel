@@ -9,7 +9,7 @@ export const Storage = {
 
     if (result === null) {
       result = data;
-      window.Tarasov.storage.set(name, data);
+      window.Tarasov.Storage.set(name, data);
     }
 
     return result;

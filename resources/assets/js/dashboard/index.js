@@ -1,6 +1,6 @@
 import '../bootstrap';
 
-import { Table, Storage } from '../components';
+import { Table, Storage, Breadcrumbs } from '../components';
 import { documentReady } from '../helpers';
 
 /**
@@ -14,7 +14,7 @@ documentReady(function () {
   const burger = {
     target: _burger,
     data: _burger.dataset,
-    state: window.Tarasov.Storage.get('burger', false),
+    state: Storage.get('tarasov:burger', false),
     navigation: this.querySelector(_burger.dataset.target)
   };
 
@@ -23,14 +23,14 @@ documentReady(function () {
 
     setTimeout(() => {
       burger.navigation.classList.remove(burger.data.classname);
-      window.Tarasov.Storage.set('burger', false);
+      Storage.set('tarasov:burger', false);
     });
   }
 
   burger.target.addEventListener('click', () => {
     burger.navigation.classList.toggle(burger.data.classname);
 
-    window.Tarasov.Storage.set('burger', burger.navigation.classList.contains(burger.data.classname));
+    Storage.set('tarasov:burger', burger.navigation.classList.contains(burger.data.classname));
   });
 
   this.addEventListener('click', e => {
@@ -55,4 +55,5 @@ documentReady(function () {
  */
 documentReady(function () {
   window.Tarasov.TableManager = new Table();
+  window.Tarasov.Breadcrumbs = new Breadcrumbs();
 });
