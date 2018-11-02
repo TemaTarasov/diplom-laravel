@@ -1,12 +1,11 @@
 export class Form {
   /**
-   * @param  {string} form
-   * @param  {array} inputs
-   * @param  {string} url
-   * @param  {string} method
-   * @param  {function} callback
-   * @param  {function} validation
-   * @return void 0
+   * @param {string} form
+   * @param {array} inputs
+   * @param {string} url
+   * @param {string} method
+   * @param {function} callback
+   * @param {function} validation
    */
   constructor(form, inputs, url, method, callback, validation) {
     this.form = document.querySelector(form);
@@ -36,8 +35,7 @@ export class Form {
   }
 
   /**
-   * @param  {event} e
-   * @return void 0
+   * @param {event} e
    */
   handleSubmit(e) {
     e.preventDefault();

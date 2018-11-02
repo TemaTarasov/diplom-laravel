@@ -3,8 +3,6 @@ import { documentReady } from '../helpers';
 
 /**
  * Sign-in form
- *
- * @return void 0
  */
 documentReady(function () {
   new window.Tarasov.Form('#sign-in', ['login', 'password'], '/api/v1/login', 'post', function (res) {

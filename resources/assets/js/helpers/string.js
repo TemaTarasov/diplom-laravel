@@ -3,21 +3,23 @@
  * @param  {boolean} full
  * @return {string}
  */
-export const trim = (value, full = false) => {
-  return value
-    ? value.trim().split(' ').filter(x => x !== '').join(full ? '' : ' ')
-    : value
-};
+export function trim(value, full = false) {
+  return isEmpty(value)
+    ? value.trim().split(' ').filter(x => !isEmpty(x)).join(full ? '' : ' ')
+    : value;
+}
 
 /**
  * @param  {*} value
  * @return {boolean}
  */
-export const isEmpty = value => {
-  return (
-    typeof value === 'undefined' || value === null
-  ) || value === '';
-};
+export function isEmpty(value) {
+  return value === null ||
+    value === undefined ||
+    value === '' ||
+    (Array.isArray(value) && !value.length) ||
+    (typeof value === 'object' && !Object.keys(value));
+}
 
 window.Tarasov = window.Tarasov || {};
 

@@ -6,7 +6,7 @@ import { documentReady } from '../helpers';
 /**
  * Navigation
  *
- * @return void 0
+ * this = document
  */
 documentReady(function () {
   const _burger = this.getElementById('burger');
@@ -50,8 +50,6 @@ documentReady(function () {
 
 /**
  * Table
- *
- * @return void 0
  */
 documentReady(function () {
   window.Tarasov.TableManager = new Table();

@@ -34,7 +34,7 @@ export class Breadcrumbs {
   }
 
   /**
-   * @param  {*}      data
+   * @param  {*} data
    * @return {array}
    */
   push(data) {
@@ -70,9 +70,6 @@ export class Breadcrumbs {
     }
   }
 
-  /**
-   * @return void 0
-   */
   render() {
     while (this.container.lastElementChild) this.container.removeChild(this.container.lastElementChild);
 
@@ -95,7 +92,7 @@ export class Breadcrumbs {
 
   /**
    * @param  {object} data
-   * @return {HTML.Element}
+   * @return {template}
    */
   buildLink(data) {
     return template(`
@@ -107,7 +104,7 @@ export class Breadcrumbs {
 
   /**
    * @param  {object} data
-   * @return {HTML.Element}
+   * @return {template}
    */
   buildItem(data) {
     return template(`

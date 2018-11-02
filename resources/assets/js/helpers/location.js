@@ -34,16 +34,14 @@ export const queryString = {
     return search[attr] || search;
   },
   /**
-   * @param  {object} data
-   * @return void 0
+   * @param {object} data
    */
   set(data) {
     window.location.search = this.__mapQueryObjectToString(data);
   },
   /**
-   * @param  {string} attr
-   * @param  {string} data
-   * @return void 0
+   * @param {string} attr
+   * @param {string} data
    */
   change(attr, data) {
     const search = this.get();

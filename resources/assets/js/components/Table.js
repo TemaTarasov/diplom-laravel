@@ -39,17 +39,13 @@ export class Table {
   }
 
   /**
-   * @param  {object} attr
-   * @param  {} data
-   * @return void 0
+   * @param {object} attr
+   * @param {} data
    */
   change(attr, data) {
     queryString.change(attr, data);
   }
 
-  /**
-   * @return void 0
-   */
   __init() {
     this.table = document.querySelector('[role="table"]');
 
@@ -83,7 +79,6 @@ export class Table {
 
   /**
    * @param  {object} checkboxes
-   * @return void 0
    */
   __initCheckboxes(checkboxes) {
     checkboxes.items.forEach(item => {
@@ -110,7 +105,6 @@ export class Table {
 
   /**
    * @param  {array} actions
-   * @return void 0
    */
   __initBulkActions(actions) {
     actions.forEach(action => {
@@ -119,8 +113,7 @@ export class Table {
   }
 
   /**
-   * @param  {event} e
-   * @return void 0
+   * @param {event} e
    */
   handleSelectChanged(e) {
     const selected = this.checkboxes.items.filter(checkbox => checkbox.checked);
@@ -147,8 +140,7 @@ export class Table {
   }
 
   /**
-   * @param  {event} e
-   * @return void 0
+   * @param {event} e
    */
   handleActionBound(e) {
     const { id, type } = e.currentTarget.dataset;
@@ -163,16 +155,14 @@ export class Table {
   }
 
   /**
-   * @param  {number} id
-   * @return void 0
+   * @param {number} id
    */
   handleDelete(id) {
 
   }
 
   /**
-   * @param  {event} e
-   * @return void 0
+   * @param {event} e
    */
   handleBulkActionBound(e) {
     const { type } = e.currentTarget.dataset;
@@ -189,10 +179,8 @@ export class Table {
   }
 
   /**
-   * @param  {array} ids
-   * @return void 0
+   * @param {array} ids
    */
   handleMultipleDelete(ids) {
-
   }
 }

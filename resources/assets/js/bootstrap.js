@@ -6,8 +6,6 @@ import { documentReady } from './helpers';
 
 /**
  * Define axios
- *
- * @return void 0
  */
 (() => {
   window.axios = require('axios');

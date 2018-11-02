@@ -6,8 +6,7 @@ export class Dropdown {
   }
 
   /**
-   * @param  {document} doc
-   * @return void 0
+   * @param {document} doc
    */
   __init(doc = document) {
     this.dropdowns = [].slice.call(doc.querySelectorAll('[data-type="dropdown"]'));
@@ -18,16 +17,14 @@ export class Dropdown {
   }
 
   /**
-   * @param  {array} dropdowns
-   * @return void 0
+   * @param {array} dropdowns
    */
   init(dropdowns) {
     dropdowns.forEach(this.defineDropdown);
   }
 
   /**
-   * @param  {HTML.Element} item
-   * @return void 0
+   * @param {HTML.Element} item
    */
   defineDropdown(item) {
     item.addEventListener('click', () => {
@@ -53,8 +50,7 @@ export class Dropdown {
   }
 
   /**
-   * @param  {*} element
-   * @return void 0
+   * @param {*} element
    */
   define(element) {
     if (element) {
@@ -72,8 +68,7 @@ export class Dropdown {
   }
 
   /**
-   * @param  {string} name
-   * @return void 0
+   * @param {string} name
    */
   remove(name) {
     const element = this.dropdowns.find(dropdown => dropdown.dataset.name === name);
@@ -86,8 +81,7 @@ export class Dropdown {
   }
 
   /**
-   * @param  {event} e
-   * @return void 0
+   * @param {event} e
    */
   handleBlur(e) {
     this.dropdowns.filter(item => item.parentElement.classList.contains('opened')).forEach(item => {

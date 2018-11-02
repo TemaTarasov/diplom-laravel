@@ -1,9 +1,9 @@
 /**
  * @param  {string} template
  * @param  {object} data
- * @return {HTML.Element}
+ * @return {template}
  */
-export const template = (template, data) => {
+export function template(template, data) {
   const d = document.createElement('div');
   d.innerHTML = `<template>${template}</template>`;
 
@@ -20,7 +20,7 @@ export const template = (template, data) => {
  * @param  {function} callback
  * @return void 0
  */
-export const documentReady = callback => {
+export function documentReady(callback) {
   window.addEventListener('DOMContentLoaded', callback.bind(document), true);
 };
 

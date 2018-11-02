@@ -10,8 +10,7 @@ export class Input {
   }
 
   /**
-   * @param  {array} blocks
-   * @return void 0
+   * @param {array} blocks
    */
   __init(blocks) {
     if (blocks.length) {
@@ -22,8 +21,7 @@ export class Input {
   }
 
   /**
-   * @param  {HTML.Element} input
-   * @return void 0
+   * @param {template} input
    */
   defineInput(block) {
     if (block instanceof HTMLElement) {
@@ -52,8 +50,8 @@ export class Input {
   }
 
   /**
-   * @param  {HTML.Element} element
-   * @return {HTML.Element}
+   * @param  {template} element
+   * @return {template}
    */
   define(element) {
     let block;
@@ -184,8 +182,7 @@ export class Input {
   }
 
   /**
-   * @param  {string} name
-   * @return void 0
+   * @param {string} name
    */
   remove(name) {
     const el = this.get(name).parentElement;
@@ -196,8 +193,7 @@ export class Input {
   }
 
   /**
-   * @param  {event} e
-   * @return void 0
+   * @param {event} e
    */
   handleFocus(e) {
     const input = this.get(e.currentTarget.name);
@@ -209,8 +205,7 @@ export class Input {
   }
 
   /**
-   * @param  {event} e
-   * @return void 0
+   * @param {event} e
    */
   handleBlur(e) {
     const input = this.get(e.currentTarget.name);

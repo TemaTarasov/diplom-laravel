@@ -7,7 +7,7 @@ export const Notification = new class {
 
   /**
    * @param  {object} data
-   * @return {HTML.Element}
+   * @return {template}
    */
   notify(data) {
     const {
