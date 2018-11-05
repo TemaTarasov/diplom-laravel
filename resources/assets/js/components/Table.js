@@ -145,8 +145,8 @@ export class Table {
   handleActionBound(e) {
     const { id, type } = e.currentTarget.dataset;
 
-    switch (true) {
-      case type === 'delete':
+    switch (type) {
+      case 'delete':
         this.handleDelete(id);
         break;
       default:
@@ -167,8 +167,8 @@ export class Table {
   handleBulkActionBound(e) {
     const { type } = e.currentTarget.dataset;
 
-    switch (true) {
-      case type === 'delete':
+    switch (type) {
+      case 'delete':
         this.handleMultipleDelete(
           this.selected.map(select => select.id)
         );

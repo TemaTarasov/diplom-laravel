@@ -19,14 +19,14 @@ export const Notification = new class {
     let icon;
     let closeTimeout;
 
-    switch (true) {
-      case type === 'success':
+    switch (type) {
+      case 'success':
         icon = '<i class="fas fa-check-circle"></i>';
         break;
-      case type === 'warning':
+      case 'warning':
         icon = '<i class="fas fa-exclamation-triangle"></i>';
         break;
-      case type === 'error':
+      case 'error':
         icon = '<i class="fas fa-exclamation-circle"></i>';
         break;
       default:
