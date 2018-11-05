@@ -1,18 +1,18 @@
 @extends('dashboard.layouts.index')
 
 @section('content')
-  <form id="manage">
+  <form id="manage" data-action="{{ $action }}">
     @include('components.input', [
     'name' => 'login',
     'placeholder' => 'Login',
-    'value' => $user['login'],
+    'value' => isset($user['login']) ? $user['login'] : '',
     'require' => true,
     'labelFloating' => true
   ])
     @include('components.input', [
       'name' => 'email',
       'placeholder' => 'E-mail',
-      'value' => $user['email'],
+      'value' => isset($user['email']) ? $user['email'] : '',
       'require' => true,
       'labelFloating' => true
     ])
@@ -65,9 +65,16 @@
         return bool;
       });
 
+      var action = this.getElementById('manage').dataset.action;
+      var label = (
+        (action === 'create' && 'User Create') ||
+        (action === 'edit' && 'Manage User (' + document.getElementById('login').value + ')') ||
+        ''
+      );
+
       window.Tarasov.Breadcrumbs.push({
         name: 'users.manage',
-        label: 'Manage User (' + document.getElementById('login').value + ')'
+        label: label
       });
     });
   </script>

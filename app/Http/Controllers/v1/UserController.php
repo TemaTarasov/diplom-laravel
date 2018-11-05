@@ -12,7 +12,7 @@ class UserController extends Dashboard {
   public function __construct() {
     parent::__construct();
 
-    $this->content['pageName'] = 'Users';
+    $this->content['pageName'] = '';
     $this->content['navigation']['current'] = 'Users';
     $this->content['route'] = '/dashboard/users';
 
@@ -56,6 +56,8 @@ class UserController extends Dashboard {
    * @return \Illuminate\Http\Response
    */
   public function index(Request $request) {
+    $this->content['pageName'] = 'Users';
+
     $pageSize = isset($request->query()['pageSize']) ? intval($request->query()['pageSize']) : 10;
 
     if (Auth::user()->permissions !== 'service-admin') {
@@ -75,6 +77,8 @@ class UserController extends Dashboard {
    * @return \Illuminate\Http\Response
    */
   public function create() {
+    $this->content['pageName'] = 'User Create';
+
     return view('dashboard.pages.users.manage', array_merge($this->content, [
       'action' => 'create'
     ]));
@@ -84,7 +88,6 @@ class UserController extends Dashboard {
    * Store a newly created resource in storage.
    *
    * @param  \Illuminate\Http\Request $request
-   * @return \Illuminate\Http\Response
    */
   public function store(Request $request) {
     // TODO: create user
@@ -93,8 +96,7 @@ class UserController extends Dashboard {
   /**
    * Display the specified resource.
    *
-   * @param  int $id
-   * @return \Illuminate\Http\Response
+   * @param  int or string $user
    */
   public function show($user) {
     //
@@ -103,15 +105,17 @@ class UserController extends Dashboard {
   /**
    * Show the form for editing the specified resource.
    *
-   * @param  int $id
+   * @param  int or string $id
    * @return \Illuminate\Http\Response
    */
   public function edit($user) {
     $result = User::where('_id', $user)->orWhere('login', $user)->first();
+    $this->content['pageName'] = 'Manage User ('. $result->login .')';
 
     if (isset($result)) {
       return view('dashboard.pages.users.manage', array_merge($this->content, [
-        'user' => $result
+        'user' => $result,
+        'action' => 'edit'
       ]));
     }
 
@@ -122,8 +126,7 @@ class UserController extends Dashboard {
    * Update the specified resource in storage.
    *
    * @param  \Illuminate\Http\Request $request
-   * @param  int $id
-   * @return \Illuminate\Http\Response
+   * @param string $user
    */
   public function update(Request $request, $user) {
     // TODO: update user info
@@ -132,8 +135,7 @@ class UserController extends Dashboard {
   /**
    * Remove the specified resource from storage.
    *
-   * @param  int $id
-   * @return \Illuminate\Http\Response
+   * @param  int or string $user
    */
   public function destroy($user) {
     // TODO: delete user

@@ -17,7 +17,7 @@ class DashboardController extends Dashboard {
    * @return \Illuminate\Http\Response
    */
   public function index() {
-    return view('dashboard.pages.dashboard.index', array_merge($this->content, []));
+    return view('dashboard.pages.dashboard.index', $this->content);
   }
 
   /**

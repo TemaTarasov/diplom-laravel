@@ -9,35 +9,28 @@ class SignController extends Controller {
   public function __construct() {
     parent::__construct();
 
-    $this->content = array_merge([
-      'pageName' => 'Sign In'
-    ], $this->version);
+    $this->content = array_merge($this->version, [
+      'pageName' => ''
+    ]);
   }
 
   public function in() {
+    $this->content['pageName'] = 'Sign In';
+
     return view('ui.sign-in', $this->content);
   }
 
   public function up() {
-    return view('sign-up', [
-      'version' => $this->VERSION
-    ]);
-  }
+    $this->content['pageName'] = 'Sign Up';
 
-  public function out() {
-    return view('sign-out', [
-      'version' => $this->VERSION
-    ]);
+    return view('ui.sign-up', $this->content);
   }
 
   public function login(SignLoginRequest $request) {
-    if (Auth::attempt(['login' => $request->login, 'password' => $request->password])) {
-      return [
-        'status' => 200
-      ];
-    }
-
-    if (Auth::attempt(['email' => $request->login, 'password' => $request->password])) {
+    if (
+      Auth::attempt(['login' => $request->login, 'password' => $request->password]) ||
+      Auth::attempt(['email' => $request->login, 'password' => $request->password])
+    ) {
       return [
         'status' => 200
       ];
